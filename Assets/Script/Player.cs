@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : BaseEntity
 {
+    public InputSystem_Actions inputs;
+    public Animator animator;
+
+    public Vector2 MoveInput;
+    public float MoveSpeed;
+
     public CircleCollider2D coll;
     public float range;
 
@@ -13,6 +19,15 @@ public class Player : BaseEntity
     {
         coll = GetComponent<CircleCollider2D>();
         coll.radius = range;
+        inputs = new();
+    }
+    private void OnEnable()
+    {
+        inputs.Enable();
+        inputs.Player.Move.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
+        inputs.Player.Move.canceled += ctx => MoveInput = Vector2.zero;
+
+
     }
     void Start()
     {
@@ -21,7 +36,18 @@ public class Player : BaseEntity
 
     void Update()
     {
+        OnMove();
+    }
+    public void OnMove()
+    {
+        if(MoveInput != Vector2.zero)
+        {
+            animator.SetBool("IsMoving", true);
 
+            transform.position += (Vector3)MoveInput * MoveSpeed * Time.deltaTime;
+        }
+        else
+            animator.SetBool("IsMoving", false);
     }
     public void AutoAttackEnemies()
     {
