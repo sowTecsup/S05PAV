@@ -270,6 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed15df00bca1a7842b2a5aaba75353a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  entityID: 0
+  entityName: 
+  enetityDescription: 
+  element: 0
 --- !u!1 &51818079
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,8 +416,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500ccb908df4a834288db6ab8dd7f632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  range: 3
+  entityID: 0
+  entityName: 
+  enetityDescription: 
+  element: 0
   coll: {fileID: 0}
+  range: 3
   Enemys: []
 --- !u!50 &51818084
 Rigidbody2D:
