@@ -70,8 +70,20 @@ public class Player : BaseEntity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Enemy>() != null)
-            Enemys.Add(collision.gameObject);
+        /*if (collision.GetComponent<Enemy>() != null)
+            Enemys.Add(collision.gameObject);*/
+
+        if(collision.GetComponent<IDamageable>() != null)
+        {
+            collision.GetComponent<IDamageable>().TakeDamage(10);
+        }
+
+        if (collision.GetComponent<IInteractable>() != null)
+        {
+            collision.GetComponent<IInteractable>().Interact(gameObject);
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
